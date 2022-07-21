@@ -7,7 +7,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// The is ship valid tests.
+    /// The is ship valid tests. 
     /// </summary>
     [TestClass]
     public class IsShipValidTests

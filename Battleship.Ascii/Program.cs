@@ -82,7 +82,7 @@ namespace Battleship.Ascii
                 if (isHit)
                 {
                     Console.Beep();
-
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(@"                \         .  ./");
                     Console.WriteLine(@"              \      .:"";'.:..""   /");
                     Console.WriteLine(@"                  (M^^.^~~:.'"").");
@@ -91,19 +91,30 @@ namespace Battleship.Ascii
                     Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
                     Console.WriteLine(@"                 -\  \     /  /-");
                     Console.WriteLine(@"                   \  \   /  /");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("KABOOM... Nice Hit! ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                } else {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(@"                  ~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"                ~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"              ~~~~~~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"              ~~~~~~~~~((  ))~~~~~~~~");
+                    Console.WriteLine(@"              ~~~~~~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"                ~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"                  ~~~~~~~~~~~~~~");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("SPLASH.... You missed!");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
-
-                Console.WriteLine(isHit ? "Yeah ! Nice hit !" : "Miss");
 
                 position = GetRandomPosition();
                 isHit = GameController.CheckIsHit(myFleet, position);
                 telemetryClient.TrackEvent("Computer_ShootPosition", new Dictionary<string, string>() { { "Position", position.ToString() }, { "IsHit", isHit.ToString() } });
                 Console.WriteLine();
-                Console.WriteLine("Computer shot in {0}{1} and {2}", position.Column, position.Row, isHit ? "has hit your ship !" : "missed");
-                if (isHit)
-                {
+                if (isHit) {
                     Console.Beep();
-
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(@"                \         .  ./");
                     Console.WriteLine(@"              \      .:"";'.:..""   /");
                     Console.WriteLine(@"                  (M^^.^~~:.'"").");
@@ -112,7 +123,21 @@ namespace Battleship.Ascii
                     Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
                     Console.WriteLine(@"                 -\  \     /  /-");
                     Console.WriteLine(@"                   \  \   /  /");
-
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Computer shot in {0}{1} and has hit your ship!", position.Column, position.Row);
+                    Console.ForegroundColor = ConsoleColor.White;
+                } else {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(@"                  ~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"                ~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"              ~~~~~~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"              ~~~~~~~~~((  ))~~~~~~~~");
+                    Console.WriteLine(@"              ~~~~~~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"                ~~~~~~~~~~~~~~~~~~");
+                    Console.WriteLine(@"                  ~~~~~~~~~~~~~~");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Computer shot in {0}{1} and missed.", position.Column, position.Row);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
             while (true);
