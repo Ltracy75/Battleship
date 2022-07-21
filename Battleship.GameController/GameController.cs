@@ -87,6 +87,12 @@ namespace Battleship.GameController
             return ship.Positions.Count == ship.Size;
         }
 
+        //public static bool IsSunk(Ship ship)
+        //{
+        //    return ship.Positions.
+
+        //}
+
         public static Position GetRandomPosition(int size)
         {
             var random = new Random();
