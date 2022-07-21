@@ -138,7 +138,6 @@ namespace Battleship.Ascii
                     Console.WriteLine(@"                 -\  \     /  /-");
                     Console.WriteLine(@"                   \  \   /  /");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Computer shot in {0}{1} and has hit your ship!", position.Column, position.Row);
                     Console.ForegroundColor = ConsoleColor.White;
                 } else {
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -150,7 +149,6 @@ namespace Battleship.Ascii
                     Console.WriteLine(@"                ~~~~~~~~~~~~~~~~~~");
                     Console.WriteLine(@"                  ~~~~~~~~~~~~~~");
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Computer shot in {0}{1} and missed.", position.Column, position.Row);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
