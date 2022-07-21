@@ -73,12 +73,16 @@ namespace Battleship.Ascii
 
             do
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine();
-                Console.WriteLine("Player, it's your turn");
+                Console.WriteLine("Players Turn");
+                Console.WriteLine("_________________________________________________");
+                Console.WriteLine();
                 Console.WriteLine("Enter coordinates for your shot :");
                 var position = ParsePosition(Console.ReadLine());                
                 var isHit = GameController.CheckIsHit(enemyFleet, position);
                 telemetryClient.TrackEvent("Player_ShootPosition", new Dictionary<string, string>() { { "Position", position.ToString() }, { "IsHit", isHit.ToString() } });
+                Console.ForegroundColor = ConsoleColor.White;
                 if (isHit)
                 {
                     Console.Beep();
@@ -108,11 +112,21 @@ namespace Battleship.Ascii
                     Console.ForegroundColor = ConsoleColor.White;
                 }
 
+                Console.WriteLine(isHit ? "Yeah ! Nice hit !" : "Miss");
+
                 position = GetRandomPosition();
                 isHit = GameController.CheckIsHit(myFleet, position);
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 telemetryClient.TrackEvent("Computer_ShootPosition", new Dictionary<string, string>() { { "Position", position.ToString() }, { "IsHit", isHit.ToString() } });
                 Console.WriteLine();
-                if (isHit) {
+                Console.WriteLine("Computers Turn");
+                Console.WriteLine("_________________________________________________");
+                Console.WriteLine();
+                Console.WriteLine("         Computer shot in {0}{1} and {2}", position.Column, position.Row, isHit ? "has hit your ship !" : "missed");
+                Console.WriteLine("_________________________________________________");
+                Console.ForegroundColor = ConsoleColor.White;
+                if (isHit)
+                {
                     Console.Beep();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(@"                \         .  ./");
@@ -167,6 +181,7 @@ namespace Battleship.Ascii
 
             InitializeEnemyFleet();
         }
+
 
         private static void InitializeMyFleet()
         {
